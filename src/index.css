@@ -1,0 +1,287 @@
+:root{
+  --bg1:#070A14;
+  --bg2:#0B1020;
+  --card:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.14);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.72);
+  --muted2:rgba(255,255,255,.55);
+  --shadow:0 22px 90px rgba(0,0,0,.55);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 700px at 20% 10%, #15206a 0%, transparent 60%),
+    radial-gradient(900px 600px at 85% 15%, #510b7a 0%, transparent 55%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+}
+
+.page{min-height:100vh; position:relative; overflow:hidden;}
+.bgGlow{
+  position:absolute; inset:-220px;
+  background:
+    radial-gradient(closest-side, rgba(0,255,255,.09), transparent 60%),
+    radial-gradient(closest-side, rgba(255,0,200,.08), transparent 60%);
+  filter:blur(45px);
+  pointer-events:none;
+}
+
+.container{
+  position:relative;
+  max-width:1050px;
+  margin:0 auto;
+  padding:44px 18px 70px;
+}
+
+/* HERO */
+.hero{margin-bottom:18px;}
+.heroTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.brandPill{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  border-radius:999px;
+  font-size:13px;
+  color:var(--muted);
+}
+.rightTag{
+  padding:10px 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.20);
+  border-radius:999px;
+  font-size:13px;
+  color:var(--muted);
+}
+.dot{
+  width:9px;height:9px;border-radius:999px;
+  background:rgba(120,220,255,.8);
+  box-shadow:0 0 20px rgba(120,220,255,.75);
+}
+
+.heroTitle{
+  margin:14px 0 8px;
+  font-size:56px;
+  letter-spacing:-0.03em;
+  line-height:1.02;
+}
+.heroSub{
+  margin:0 0 18px;
+  max-width:780px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* Price banner like “Google Flights” vibe */
+.priceBanner{
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.14);
+  background: linear-gradient(135deg, rgba(120,220,255,.14), rgba(255,90,200,.12));
+  padding:18px 18px;
+  box-shadow: 0 18px 70px rgba(0,0,0,.35);
+  backdrop-filter: blur(14px);
+}
+.priceLabel{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:8px;
+}
+.priceValue{
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:-0.03em;
+}
+.priceMeta{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--muted2);
+}
+
+/* CARD */
+.card{
+  margin-top:18px;
+  padding:18px;
+  border-radius:22px;
+  border:1px solid var(--border);
+  background:var(--card);
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+/* Big form layout */
+.formGrid{
+  display:grid;
+  grid-template-columns: 1.2fr 56px 1.2fr 1fr 0.8fr;
+  gap:14px;
+  align-items:end;
+}
+
+.field{display:flex; flex-direction:column; gap:8px;}
+.field.big label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+input{
+  height:54px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.24);
+  color:var(--text);
+  padding:0 14px;
+  outline:none;
+  transition: border 140ms ease, transform 140ms ease;
+  font-size:16px;
+}
+input:focus{
+  border-color: rgba(120, 220, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+.helper{font-size:12px;color:var(--muted2); line-height:1.4;}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;}
+
+.swapBtn{
+  width:56px;height:54px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  cursor:pointer;
+  font-size:18px;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.swapBtn:hover{background:rgba(255,255,255,.12);}
+.swapBtn:active{transform:scale(.98);}
+
+.pillBig{
+  height:54px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  display:flex;
+  align-items:center;
+  padding:0 14px;
+  font-size:18px;
+  font-weight:900;
+}
+
+/* Suggestions */
+.suggestSection{margin-top:16px;}
+.suggestTitle{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.suggestGrid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+}
+.suggestChip{
+  text-align:left;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.20);
+  color:var(--text);
+  padding:12px 12px;
+  cursor:pointer;
+  transition: transform 120ms ease, background 120ms ease, border 120ms ease;
+}
+.suggestChip:hover{
+  background:rgba(255,255,255,.07);
+}
+.suggestChip:active{
+  transform: scale(.99);
+}
+.suggestChip.active{
+  border-color: rgba(120, 220, 255, 0.65);
+  background: rgba(0, 160, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(120, 220, 255, 0.12);
+}
+.suggestMain{
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:-0.01em;
+}
+.suggestSub{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--muted2);
+  line-height:1.35;
+}
+
+.alert{
+  margin-top:14px;
+  padding:12px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.22);
+  font-size:14px;
+}
+.alert.warn{border-color: rgba(255,200,80,.35);}
+.alert.err{border-color: rgba(255,100,120,.35);}
+.small{margin-top:6px; font-size:12px; color:var(--muted2);}
+
+.primaryBtn{
+  margin-top:16px;
+  height:56px;
+  width:100%;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.18);
+  background: linear-gradient(135deg, rgba(120, 220, 255, 0.85), rgba(255, 90, 200, 0.70));
+  color:#07101a;
+  font-weight:900;
+  cursor:pointer;
+  transition: transform 120ms ease, filter 120ms ease;
+  font-size:16px;
+}
+.primaryBtn:hover{filter:brightness(1.05);}
+.primaryBtn:active{transform:scale(.99);}
+.primaryBtn:disabled{cursor:not-allowed; opacity:.75; filter:grayscale(.2) brightness(.85);}
+
+.spinnerWrap{display:inline-flex; align-items:center; gap:10px; justify-content:center;}
+.spinner{
+  width:16px;height:16px;border-radius:999px;
+  border:2px solid rgba(0,0,0,.25);
+  border-top-color: rgba(0,0,0,.75);
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.skeleton{
+  height:54px;
+  border-radius:16px;
+  background: linear-gradient(90deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 100%);
+  background-size:200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  border:1px solid rgba(255,255,255,.14);
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+.footnote{
+  margin-top:12px;
+  font-size:12px;
+  color:var(--muted2);
+  line-height:1.5;
+}
+
+@media (max-width: 980px){
+  .heroTitle{font-size:44px;}
+  .formGrid{
+    grid-template-columns: 1fr;
+  }
+  .swapBtn{width:100%;}
+  .suggestGrid{grid-template-columns:1fr; }
+}
