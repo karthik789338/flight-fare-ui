@@ -1,16 +1,160 @@
-# React + Vite
+# ✈️ Flight Fare Prediction UI (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Build and run a front-end to select **From / To cities** and a **future travel date**, then call a backend API to return a **predicted flight fare (USD)**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ Features
 
-## React Compiler
+* Use city **autocomplete** (keyboard + mouse)
+* **Swap** From/To cities
+* Pick **future-only** travel dates (tomorrow onwards)
+* Use **quick suggestions** to auto-fill common routes
+* See clear errors for invalid input, missing env, and API failures
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧰 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React + Vite
+* Custom CSS
+* Backend: any HTTP API (AWS Lambda Function URL / Cloud Run / FastAPI, etc.)
+
+---
+
+## ⚙️ Setup
+
+### 1) Install dependencies
+
+```
+npm install
+```
+
+### 2) Add environment variable
+
+Create a `.env` file in the project root:
+
+```
+VITE_API_URL=https://YOUR_API_ENDPOINT/
+```
+
+Only variables prefixed with `VITE_` are exposed by Vite.
+
+### 3) Run locally
+
+```
+npm run dev
+```
+
+### 4) Build and preview
+
+```
+npm run build
+npm run preview
+```
+
+---
+
+## 📡 API Contract
+
+Use a backend that supports these endpoints:
+
+### `GET /` — metadata (cities/quarters)
+
+Return metadata for autocomplete.
+
+Response:
+
+```
+{
+  "cities": ["Dallas/Fort Worth, TX", "Chicago, IL"],
+  "quarters": [1, 2, 3, 4]
+}
+```
+
+### `POST /` — prediction
+
+Send:
+
+```
+{
+  "city1": "Dallas/Fort Worth, TX",
+  "city2": "New York City, NY (Metropolitan Area)",
+  "quarter": 1
+}
+```
+
+Receive:
+
+```
+{
+  "prediction": 412
+}
+```
+
+Rules:
+
+* Return `prediction` as a number (USD)
+* Derive `quarter` from the selected date:
+
+  * Jan–Mar → Q1
+  * Apr–Jun → Q2
+  * Jul–Sep → Q3
+  * Oct–Dec → Q4
+
+---
+
+## 🌍 Deploy
+
+### GitHub Pages
+
+Set the Vite base path to match the repo name.
+
+In `vite.config.js`:
+
+```
+export default defineConfig({
+  base: "/<repo-name>/",
+});
+```
+
+Deploy steps:
+
+1. Open GitHub → Settings → Pages
+2. Set Source to GitHub Actions
+3. Open Settings → Secrets and variables → Actions → Variables
+4. Add `VITE_API_URL` = your backend URL
+5. Push to `main` to trigger deploy
+
+### Netlify / Vercel
+
+If deploying at a root domain, set:
+
+```
+base: "/"
+```
+
+Then add `VITE_API_URL` in hosting environment variables.
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+  App.jsx        # UI logic + API calls
+  App.css        # component styles
+  main.jsx       # React entry
+  index.css      # global styles
+.github/workflows/
+  deploy.yml     # GitHub Pages deploy workflow
+vite.config.js
+```
+
+---
+
+## 🛠 Troubleshooting
+
+* Fix a blank GitHub Pages screen by setting the correct `base` in `vite.config.js`
+* Fix CORS errors by allowing requests from the deployed UI origin in the backend
+* Fix missing env issues by adding `.env` locally or setting `VITE_API_URL` in deployment variables
